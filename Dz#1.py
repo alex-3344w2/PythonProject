@@ -1,1 +1,5 @@
-print('Hi')
+print('Hello, this is Alexandra.')
+print('Let me tell you a little about myself.')
+print('I love to draw, so I like to design.')
+print('When I have free time, I draw.')
+print('Sometimes I think to draw a new avatar for myself.')
