@@ -1,6 +1,11 @@
 import logging
 import random
 
+logging.basicConfig(level=logging.DEBUG,
+                    filename="logs1.log", filemode="a",
+                    format="We have next logging message: "
+                            "%(asctime)s:%(levelname)s-%(message)s"
+                    )
 class Human:
     def __init__(self, name="Human", job=None, home=None, car=None, pet=None):
         self.name = name
@@ -114,30 +119,43 @@ class Human:
         human_indexes = self.name + "'s indexes"
         print(f"{human_indexes:^50}", "\n")
         print(f"Money – {self.money}")
+        logging.info(f"Money")
         print(f"Satiety – {self.satiety}")
+        logging.info(f"Satiety")
         print(f"Gladness – {self.gladness}")
+        logging.info(f"Gladness")
         home_indexes = "Home indexes"
         print(f"{home_indexes:^50}", "\n")
         print(f"Dog food – {self.home.food_for_dog}")
+        logging.info(f"Dog food")
         print(f"Food – {self.home.food}")
+        logging.info(f"Food")
         print(f"Mess – {self.home.mess}")
+        logging.info(f"Mess")
         car_indexes = f"{self.car.brand} car indexes"
         print(f"{car_indexes:^50}", "\n")
         print(f"Fuel – {self.car.fuel}")
+        logging.info(f"Fuel")
         print(f"Strength – {self.car.strength}")
+        logging.info(f"Strength")
         pet_indexes = f"{self.pet.dog} pet indexes"
         print(f"{pet_indexes:^50}", "\n")
         print(f"Satiety – {self.pet.satiety1}")
+        logging.info(f"Satiety")
         print(f"Gladness – {self.pet.gladness1}")
+        logging.info(f"Gladness")
 
     def is_alive(self):
         if self.gladness < 0:
+            logging.info("Depression…")
             print("Depression…")
             return False
         if self.satiety < 0:
+            logging.info("Dead…")
             print("Dead…")
             return False
         if self.money < -500:
+            logging.info("Bankrupt…")
             print("Bankrupt…")
             return False
 
@@ -145,6 +163,7 @@ class Human:
         if self.is_alive() == False:
             return False
         if self.home is None:
+            logging.info("Settled in the house")
             print("Settled in the house")
             self.get_home()
         if self.pet is None:
@@ -160,38 +179,50 @@ class Human:
         self.days_indexes(day)
         dice = random.randint(1, 4)
         if self.satiety < 20:
+            logging.info("I'll go eat")
             print("I'll go eat")
             self.eat()
         elif self.gladness < 20:
             if self.home.mess > 15:
+                logging.info("I want to chill, but there is so much mess…")
                 print("I want to chill, but there is so much mess…")
+                logging.info("So I will clean the house")
                 print("So I will clean the house")
                 self.clean_home()
             else:
+                logging.info("Let`s chill!")
                 print("Let`s chill!")
                 self.chill()
         elif self.money < 0:
+            logging.info("Start working")
             print("Start working")
             self.work()
         elif self.car.strength < 15:
+            logging.info("I need to repair my car")
             print("I need to repair my car")
             self.to_repair()
         elif self.pet.satiety1 < 7:
+            logging.info("I have to feed the dog")
             print("I have to feed the dog")
             self.lunch_for_the_dog()
         elif self.pet.gladness1 < 8:
+            logging.info("Gotta walk the dog")
             print("Gotta walk the dog")
             self.to_the_park()
         elif dice == 1:
+            logging.info("Let`s chill!")
             print("Let`s chill!")
             self.chill()
         elif dice == 2:
+            logging.info("Start working")
             print("Start working")
             self.work()
         elif dice == 3:
+            logging.info("Cleaning time!")
             print("Cleaning time!")
             self.clean_home()
         elif dice == 4:
+            logging.info("Time for treats!")
             print("Time for treats!")
             self.shopping(manage="delicacies")
         self.pet.run()
